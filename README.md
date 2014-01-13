@@ -4,11 +4,15 @@ Spicerack-rails is collection of Rails generators for Hashrocket projects.
 
 ## Usage
 
-`rails g`
+```
+rake spicerack:cask
+rake spicerack:supernumber
+rake spicerack:minical
+rake spicerack:sortr
+rake spicerack:stagehand
 
-or
-
-`rails g | grep spicerack` for just Spicerack generators.
+rake spicerack:list
+```
 
 ## Why
 
