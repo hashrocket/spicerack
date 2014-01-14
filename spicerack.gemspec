@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.summary = "Spicerack is a collection of generators for Hashrocket Rails projects."
 
-  s.required_ruby_version = '>= 2.0.0'
+  s.required_ruby_version = '>= 1.9.3'
 
   s.add_development_dependency("rake")
   s.add_development_dependency("rspec")
