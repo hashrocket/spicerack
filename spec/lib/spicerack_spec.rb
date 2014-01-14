@@ -50,4 +50,15 @@ describe 'spicerack' do
     end
   end
 
+  describe 'stagehand' do
+    it 'creates coffee, sass, and png files from remote sources' do
+      assert_remote_file "lib/assets/javascripts/stagehand.js.coffee",
+        "https://raw.github.com/camerond/stagehand/master/source/javascripts/stagehand.js.coffee"
+      assert_remote_file "lib/assets/stylesheets/stagehand.sass",
+        "https://raw.github.com/camerond/stagehand/master/source/stylesheets/stagehand.sass"
+      assert_remote_file "lib/assets/images/stagehand_icon.png",
+        "https://raw.github.com/camerond/stagehand/master/source/images/stagehand_icon.png"
+    end
+  end
+
 end
