@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.version = Spicerack::VERSION
   s.license = "MIT"
 
-  s.authors = ["Cameron Daigle"]
-  s.email = ["cameron@hashrocket.com"]
+  s.authors = ["Cameron Daigle", "Vic Ramon", "Lucas Galego"]
+  s.email = ["cameron@hashrocket.com", "vic@hashrocket.com", "lucas@hashrocket.com"]
   s.description = "Spicerack is a collection of generators for Hashrocket Rails projects."
 
   s.homepage = ""
