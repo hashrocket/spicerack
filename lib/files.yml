@@ -4,3 +4,11 @@ spices:
     rails:  'lib/assets/stylesheets/_reset.sass'
   - source: 'https://gist.github.com/camerond/8030122/raw/cask.sass'
     rails:  'lib/assets/stylesheets/cask.sass'
+
+  minical:
+  - source: 'https://raw.github.com/camerond/jquery-minical/master/source/javascripts/jquery.minical.js.coffee'
+    rails:  'lib/assets/javascripts/jquery.minical.js.coffee'
+  - source: 'https://raw.github.com/camerond/jquery-minical/master/source/stylesheets/jquery.minical.css.sass'
+    rails:  'lib/assets/stylesheets/jquery.minical.css.sass'
+  - source: 'https://raw.github.com/camerond/jquery-minical/master/source/images/jquery_minical_icons.png'
+    rails:  'lib/assets/images/jquery_minical_icons.png'
