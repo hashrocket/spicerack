@@ -7,7 +7,7 @@ namespace :spicerack do
     ENV["GEM_TESTING"] ? "tmp/#{path}" : path
   end
 
-  spice_file = File.expand_path('../../files.yml', __FILE__)
+  spice_file = File.expand_path('../../spicerack.yml', __FILE__)
   spice_yaml = YAML.load_file(spice_file)
 
   spice_yaml["spices"].keys.each do |spice|
