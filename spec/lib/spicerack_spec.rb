@@ -7,7 +7,7 @@ end
 
 describe 'spicerack' do
 
-  let(:task_path) { "tasks/spicerack" }
+  task_path = "tasks/spicerack"
 
   before :all  do
     ENV["GEM_TESTING"] = 'true'
