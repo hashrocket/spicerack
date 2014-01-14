@@ -3,6 +3,7 @@ require 'open-uri'
 
 namespace :spicerack do
 
+  desc 'install cask'
   task cask: :environment do
     spice_file = File.expand_path('../../files.yml', __FILE__)
     spice_yaml = YAML.load_file(spice_file)
