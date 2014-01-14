@@ -13,22 +13,23 @@ namespace :spicerack do
     source
   end
 
+  def write_file(file)
+    destination = get_destination(file['rails'])
+    FileUtils.mkdir_p(File.dirname(destination))
+    File.open(destination, 'wb') do |f|
+      source = get_source(file)
+      f.write open(source).read
+    end
+  end
+
   spice_file = File.expand_path('../../spicerack.yml', __FILE__)
   spice_yaml = YAML.load_file(spice_file)
 
   spice_yaml["spices"].keys.each do |spice|
     desc "Install #{spice}"
     task spice.to_sym => :environment do
-
       spice_yaml["spices"][spice].each do |file|
-        destination = get_destination(file['rails'])
-        FileUtils.mkdir_p(File.dirname(destination))
-
-        File.open(destination, 'wb') do |f|
-          source = get_source(file)
-          f.write open(source).read
-        end
-
+        write_file(file)
       end
     end
   end
