@@ -67,4 +67,14 @@ describe 'spicerack' do
         "https://raw.github.com/shaneriley/super_number/master/source/javascripts/jquery.super_number.js"
     end
   end
+
+  describe 'ui' do
+    it 'creates an index view and ui controller from templates' do
+      assert_file 'app/views/ui/index.html.haml',
+        File.expand_path('../../../lib/templates/index.html.haml', __FILE__)
+      assert_file 'app/controllers/ui_controller.rb',
+        File.expand_path('../../../lib/templates/ui_controller.rb', __FILE__)
+    end
+  end
+
 end

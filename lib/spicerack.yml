@@ -28,3 +28,11 @@ spices:
   supernumber:
   - source: "https://raw.github.com/shaneriley/super_number/master/source/javascripts/jquery.super_number.js"
     rails: 'lib/assets/javascripts/jquery.super_number.js'
+
+  ui:
+  - source: "index.html.haml"
+    rails:  "app/views/ui/index.html.haml"
+    localfile: true
+  - source: "ui_controller.rb"
+    rails: "app/controllers/ui_controller.rb"
+    localfile: true
