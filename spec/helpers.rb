@@ -2,7 +2,7 @@ require 'open-uri'
 
 module Helpers
 
-  def assert_remote_file(local, source)
+  def assert_file(local, source)
      expect(byte_array("tmp/#{local}")).to be == byte_array(source),
        "Expected #{local} to match #{source}"
   end
