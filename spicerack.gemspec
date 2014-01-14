@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency("rake")
   s.add_development_dependency("rspec")
-  s.add_development_dependency("generator_spec")
   s.add_development_dependency("pry")
 
   s.files = Dir.glob("lib/**/*") + %w(LICENSE README.md Rakefile)
