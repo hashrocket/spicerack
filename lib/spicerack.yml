@@ -24,3 +24,7 @@ spices:
     rails:  'lib/assets/stylesheets/stagehand.sass'
   - source: 'https://raw.github.com/camerond/stagehand/master/source/images/stagehand_icon.png'
     rails:  'lib/assets/images/stagehand_icon.png'
+
+  supernumber:
+  - source: "https://raw.github.com/shaneriley/super_number/master/source/javascripts/jquery.super_number.js"
+    rails: 'lib/assets/javascripts/jquery.super_number.js'

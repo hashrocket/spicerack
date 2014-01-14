@@ -61,4 +61,10 @@ describe 'spicerack' do
     end
   end
 
+  describe 'supernumber' do
+    it 'creates the js from remote sources' do
+      assert_file 'lib/assets/javascripts/jquery.super_number.js',
+        "https://raw.github.com/shaneriley/super_number/master/source/javascripts/jquery.super_number.js"
+    end
+  end
 end
