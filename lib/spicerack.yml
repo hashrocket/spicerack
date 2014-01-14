@@ -12,3 +12,7 @@ spices:
     rails:  'lib/assets/stylesheets/jquery.minical.css.sass'
   - source: 'https://raw.github.com/camerond/jquery-minical/master/source/images/jquery_minical_icons.png'
     rails:  'lib/assets/images/jquery_minical_icons.png'
+
+  sortr:
+  - source: 'https://raw.github.com/camerond/jquery-sortr/master/source/javascripts/jquery.sortr.js.coffee'
+    rails: 'lib/assets/javascripts/jquery.sortr.js.coffee'

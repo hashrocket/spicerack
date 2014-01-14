@@ -43,4 +43,11 @@ describe 'spicerack' do
     end
   end
 
+  describe 'sortr' do
+    it "creates coffeescript file from remote sources" do
+      assert_remote_file "lib/assets/javascripts/jquery.sortr.js.coffee",
+        "https://raw.github.com/camerond/jquery-sortr/master/source/javascripts/jquery.sortr.js.coffee"
+    end
+  end
+
 end
