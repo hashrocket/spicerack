@@ -6,7 +6,6 @@ require_relative '../spicerack_usage'
 namespace :spicerack do
 
   def get_yaml
-    require 'pry'; binding.pry;
     spice_file = if File.exist?('config/spicerack.yml')
                    'config/spicerack.yml'
                  else
