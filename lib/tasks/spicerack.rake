@@ -3,13 +3,17 @@ require 'open-uri'
 
 namespace :spicerack do
 
+  def localfile?(file)
+    !file['source'].include?('://')
+  end
+
   def get_destination(path)
     ENV["GEM_TESTING"] ? "tmp/#{path}" : path
   end
 
   def get_source(file)
     source = file['source']
-    source = File.expand_path("../../templates/#{source}", __FILE__) if file['localfile']
+    source = File.expand_path("../../templates/#{source}", __FILE__) if localfile?(file)
     source
   end
 

@@ -32,7 +32,5 @@ spices:
   ui:
   - source: "index.html.haml"
     rails:  "app/views/ui/index.html.haml"
-    localfile: true
   - source: "ui_controller.rb"
     rails: "app/controllers/ui_controller.rb"
-    localfile: true
