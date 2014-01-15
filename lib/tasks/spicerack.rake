@@ -12,7 +12,7 @@ namespace :spicerack do
     spice_yaml["spices"].keys.each do |spice|
 
       desc "Install #{spice}"
-      task spice.to_sym => :environment do
+      task spice.to_sym do
 
         spice_yaml["spices"][spice].each do |file|
           Spice.new(spice, file).run
@@ -21,12 +21,11 @@ namespace :spicerack do
 
       end
     end
-
   end
 
   generate_rake_tasks
 
-  task ui: :environment do
+  task :ui do
     content = File.open('config/routes.rb', 'r') { |f| f.read }
     unless content.include?("get 'ui(/:action)'")
       File.open('config/routes.rb', 'w') do |f|
