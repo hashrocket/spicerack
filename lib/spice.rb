@@ -1,10 +1,11 @@
 class Spice
 
-  attr_accessor :file, :destination, :spice
+  attr_accessor :file, :destination, :spice, :source
 
   def initialize(spice, file)
     self.spice = spice
     self.file = file
+    self.source = get_source
     self.destination = get_destination
   end
 
@@ -20,7 +21,6 @@ class Spice
   def write
     create_directories
     File.open(destination, 'wb') do |f|
-      source = get_source
       f.write open(source).read
     end
   end
