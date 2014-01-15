@@ -16,7 +16,9 @@ describe 'spicerack' do
   end
 
   before :each do
-    Rake.application.invoke_task "spicerack:#{subject}"
+    unless example.metadata[:skip_before]
+      Rake.application.invoke_task "spicerack:#{subject}"
+    end
   end
 
   after(:all) do
@@ -68,13 +70,45 @@ describe 'spicerack' do
     end
   end
 
-  describe 'ui' do
-    it 'creates an index view and ui controller from templates' do
-      assert_file 'app/views/ui/index.html.haml',
-        File.expand_path('../../../lib/templates/index.html.haml', __FILE__)
-      assert_file 'app/controllers/ui_controller.rb',
-        File.expand_path('../../../lib/templates/ui_controller.rb', __FILE__)
+  describe 'ui', skip_before: true do
+
+    before :each do
+      File.stub(:open).and_call_original
+      File.stub(:open).with('config/routes.rb', 'r').and_return(content)
+      File.stub(:open).with('config/routes.rb', 'w').and_yield(file)
+      Rake::Task["spicerack:ui"].reenable
     end
+
+    context 'ignore adding ui route' do
+      let(:content) { double('content', include?: true) }
+      let(:file) { double('file') }
+      it 'creates an index view and ui controller from templates' do
+        Rake.application.invoke_task "spicerack:ui"
+        assert_file 'app/views/ui/index.html.haml',
+          File.expand_path('../../../lib/templates/index.html.haml', __FILE__)
+        assert_file 'app/controllers/ui_controller.rb',
+          File.expand_path('../../../lib/templates/ui_controller.rb', __FILE__)
+      end
+    end
+
+    describe 'ui route exists' do
+      let(:content) { double('content', include?: true) }
+      let(:file) { double('file') }
+      it 'does not add ui route' do
+        file.should_not_receive(:write)
+        Rake.application.invoke_task "spicerack:ui"
+      end
+    end
+
+    describe 'ui route does not exists' do
+      let(:content) { double('content', include?: false, sub: nil) }
+      let(:file) { double('file') }
+      it 'adds a ui route' do
+        file.should_receive(:write)
+        Rake.application.invoke_task "spicerack:ui"
+      end
+    end
+
   end
 
 end

@@ -36,9 +36,11 @@ namespace :spicerack do
 
   task ui: :environment do
     content = File.open('config/routes.rb', 'r') { |f| f.read }
-    File.open('config/routes.rb', 'w') do |f|
-      f.write content.sub "Application.routes.draw do",
-        "Application.routes.draw do\n  get 'ui(/:action)', controller: 'ui' unless Rails.env.production?"
+    unless content.include?("get 'ui(/:action)'")
+      File.open('config/routes.rb', 'w') do |f|
+        f.write content.sub "Application.routes.draw do",
+          "Application.routes.draw do\n  get 'ui(/:action)', controller: 'ui' unless Rails.env.production?"
+      end
     end
   end
 
