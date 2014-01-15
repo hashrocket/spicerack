@@ -1,8 +1,9 @@
 class Spice
 
-  attr_accessor :file, :destination
+  attr_accessor :file, :destination, :spice
 
-  def initialize(file)
+  def initialize(spice, file)
+    self.spice = spice
     self.file = file
     self.destination = get_destination
   end
@@ -47,7 +48,7 @@ class Spice
 
   def get_source
     if localfile?
-      File.expand_path("../templates/#{file['source']}", __FILE__)
+      File.expand_path("../spices/#{spice}/templates/#{file['source']}", __FILE__)
     else
       file['source']
     end

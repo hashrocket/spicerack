@@ -12,7 +12,7 @@ namespace :spicerack do
       desc "Install #{spice}"
       task spice.to_sym => :environment do
         spice_yaml["spices"][spice].each do |file|
-          Spice.new(file).run
+          Spice.new(spice, file).run
         end
       end
     end

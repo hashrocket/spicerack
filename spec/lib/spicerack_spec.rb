@@ -85,9 +85,9 @@ describe 'spicerack' do
       it 'creates an index view and ui controller from templates' do
         Rake.application.invoke_task "spicerack:ui"
         assert_file 'app/views/ui/index.html.haml',
-          File.expand_path('../../../lib/templates/index.html.haml', __FILE__)
+          File.expand_path('../../../lib/spices/ui/templates/index.html.haml', __FILE__)
         assert_file 'app/controllers/ui_controller.rb',
-          File.expand_path('../../../lib/templates/ui_controller.rb', __FILE__)
+          File.expand_path('../../../lib/spices/ui/templates/ui_controller.rb', __FILE__)
       end
     end
 
