@@ -10,7 +10,6 @@ class Spice
   end
 
   def run
-
     if same_file_exists?
       display_exists_message
       return
@@ -20,7 +19,6 @@ class Spice
       write
       display_added_message
     end
-
   end
 
   private
