@@ -17,6 +17,10 @@ namespace :spicerack do
     source
   end
 
+  def display_message(file)
+    puts "Added #{file['source']} to #{file['rails']}" unless ENV["GEM_TESTING"]
+  end
+
   def write_file(file)
     destination = get_destination(file['rails'])
     FileUtils.mkdir_p(File.dirname(destination))
@@ -24,6 +28,7 @@ namespace :spicerack do
       source = get_source(file)
       f.write open(source).read
     end
+    display_message(file)
   end
 
   spice_file = File.expand_path('../../spicerack.yml', __FILE__)
