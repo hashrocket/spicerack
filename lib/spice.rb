@@ -55,7 +55,7 @@ class Spice
   end
 
   def display_message
-    puts "Added #{file['source']} to #{file['rails']}" unless ENV["GEM_TESTING"]
+    puts "Added #{file['rails']}" unless ENV["GEM_TESTING"]
   end
 
 end
