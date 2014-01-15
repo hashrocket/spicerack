@@ -133,4 +133,26 @@ describe 'spicerack' do
 
   end
 
+  describe 'already existing files', skip_before: true do
+
+    before :each do
+      Rake::Task["spicerack:cask"].reenable
+    end
+
+    it "won't write a file if same file already exists" do
+      Spice.any_instance.stub(:same_file_exists?).and_return(true)
+      Spice.any_instance.should_not_receive(:new_or_overwrite?)
+      Rake.application.invoke_task "spicerack:cask"
+    end
+
+    it "writes a file if the same file doesn't exist" do
+      Spice.any_instance.stub(:same_file_exists?).and_return(false)
+      write_called = false
+      Spice.any_instance.stub(:new_or_overwrite?) { write_called = true }
+      Rake.application.invoke_task "spicerack:cask"
+      write_called.should be_true
+    end
+
+  end
+
 end
