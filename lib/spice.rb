@@ -74,11 +74,11 @@ class Spice
   end
 
   def display_added_message
-    puts "Added #{file['rails']}" unless ENV["GEM_TESTING"]
+    puts "Added #{destination}" unless ENV["GEM_TESTING"]
   end
 
   def display_exists_message
-    puts "#{file['rails']} is up to date" unless ENV["GEM_TESTING"]
+    puts "#{destination} is up to date" unless ENV["GEM_TESTING"]
   end
 
 end
