@@ -8,7 +8,7 @@ module Spicerack
     end
 
     def display_message
-      puts usage_file unless ENV['GEM_TESTING']
+      puts ("\n" + usage_file) unless ENV['GEM_TESTING']
     end
 
     def usage_file
