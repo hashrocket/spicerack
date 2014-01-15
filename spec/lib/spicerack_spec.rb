@@ -21,7 +21,7 @@ describe 'spicerack' do
     end
   end
 
-  after(:all) do
+  after(:each) do
     FileUtils.rm_rf('tmp')
   end
 
@@ -107,6 +107,28 @@ describe 'spicerack' do
         file.should_receive(:write)
         Rake.application.invoke_task "spicerack:ui"
       end
+    end
+
+  end
+
+  describe 'overwriting files', skip_before: true do
+
+    before :each do
+      Rake::Task["spicerack:cask"].reenable
+    end
+
+    it "won't overwrite a file if the user chooses not to" do
+      Spice.any_instance.stub(:new_or_overwrite?).and_return(false)
+      Spice.any_instance.should_not_receive(:write)
+      Rake.application.invoke_task "spicerack:cask"
+    end
+
+    it 'overwrites a file if the user chooses to' do
+      Spice.any_instance.stub(:new_or_overwrite?).and_return(true)
+      write_called = false
+      Spice.any_instance.stub(:write) { write_called = true }
+      Rake.application.invoke_task "spicerack:cask"
+      write_called.should be_true
     end
 
   end
