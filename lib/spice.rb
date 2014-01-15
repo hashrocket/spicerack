@@ -46,9 +46,11 @@ class Spice
   end
 
   def get_source
-    source = file['source']
-    source = File.expand_path("../templates/#{source}", __FILE__) if localfile?
-    source
+    if localfile?
+      File.expand_path("../templates/#{file['source']}", __FILE__)
+    else
+      file['source']
+    end
   end
 
   def display_message
