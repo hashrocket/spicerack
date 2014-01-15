@@ -1,6 +1,7 @@
 require 'yaml'
 require 'open-uri'
 require_relative '../spice'
+require_relative '../spicerack_usage'
 
 namespace :spicerack do
 
@@ -9,13 +10,18 @@ namespace :spicerack do
     spice_yaml = YAML.load_file(spice_file)
 
     spice_yaml["spices"].keys.each do |spice|
+
       desc "Install #{spice}"
       task spice.to_sym => :environment do
+
         spice_yaml["spices"][spice].each do |file|
           Spice.new(spice, file).run
         end
+        Spicerack::Usage.new(spice).display_message
+
       end
     end
+
   end
 
   generate_rake_tasks
