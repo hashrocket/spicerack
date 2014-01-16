@@ -3,16 +3,16 @@ require 'open-uri'
 require_relative '../spice'
 require_relative '../spicerack_usage'
 
-namespace :spicerack do
+def get_yaml
+  spice_file = if File.exist?('config/spicerack.yml')
+                  'config/spicerack.yml'
+                else
+                  File.expand_path('../../spicerack.yml', __FILE__)
+                end
+  YAML.load_file(spice_file)
+end
 
-  def get_yaml
-    spice_file = if File.exist?('config/spicerack.yml')
-                   'config/spicerack.yml'
-                 else
-                   File.expand_path('../../spicerack.yml', __FILE__)
-                 end
-    YAML.load_file(spice_file)
-  end
+namespace :spicerack do
 
   def generate_rake_tasks
     spice_yaml = get_yaml
