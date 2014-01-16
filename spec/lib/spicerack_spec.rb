@@ -111,6 +111,17 @@ describe 'spicerack' do
 
   end
 
+  describe 'spicerack', skip_before: true do
+
+    it 'prints out a list of spices' do
+      puts_called = false
+      STDOUT.stub(:puts) { puts_called = true }
+      Rake.application.invoke_task "spicerack"
+      puts_called.should be_true
+    end
+
+  end
+
   describe 'overwriting files', skip_before: true do
 
     before :each do

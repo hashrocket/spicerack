@@ -43,3 +43,12 @@ namespace :spicerack do
   end
 
 end
+
+task :spicerack do
+  puts "\nYou can install or update a spice by calling \"rake spicerack:<spice_name>\"\n\n"
+  puts "Available spices:"
+
+  get_yaml["spices"].keys.sort.each do |spice|
+    puts "  #{spice}"
+  end
+end
