@@ -4,6 +4,8 @@ Spicerack generates rake tasks to pull down resources for Hashrocket projects.
 
 ## Usage
 
+Run `rake spicerack` to list the available spices.
+
 Run `rake spicerack:<spice_name>` to install or update that spice.
 
 Examples:
