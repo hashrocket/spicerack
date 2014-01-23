@@ -17,21 +17,6 @@ rake spicerack:sortr
 rake spicerack:stagehand
 ```
 
-## Custom Spices
-
-You can replace the existing spices by creating a `config/spicerack.yml` file.
-
-Example:
-
-```
-spices:
-  my_spice:
-  - source: 'remote-url'
-    rails:  'local-destination-path'
-  - source: 'other-url'
-    rails:  'other-destination-path'
-```
-
 ## Why
 
 These rake tasks pull down the newest versions of their assets straight from the Github repos, so we can keep jQuery plugins and other files that don't live in gems up to date easily. Plus, this will create the UI directory for you.
