@@ -1,22 +1,18 @@
 require 'yaml'
 require 'open-uri'
 require_relative '../spice'
+require_relative '../ingredient'
 require_relative '../spice_loader'
 require_relative '../spicerack_usage'
 
 namespace :spicerack do
 
   def generate_rake_tasks
-    spice_loader = SpiceLoader.new
-    spices = spice_loader.spice_list
-
-    spices.each do |spice|
-      desc "Install #{spice}"
-      task spice.to_sym do
-        spice_loader.get_yaml_for(spice).each do |file|
-          Spice.new(spice, file).run
-        end
-        Spicerack::Usage.new(spice).display_message
+    SpiceLoader.spices.each do |spice|
+      desc "Install #{spice.name}"
+      task spice.name.to_sym do
+        spice.add_ingredients
+        spice.display_usage
       end
     end
   end
@@ -40,7 +36,7 @@ task :spicerack do
   " calling \"rake spicerack:<spice_name>\"\n
   Available spices:"
 
-  SpiceLoader.new.spice_list.sort.each do |spice|
+  SpiceLoader.spices.map(&:name).sort.each do |spice|
     puts "  #{spice}"
   end
 end

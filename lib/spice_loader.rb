@@ -3,15 +3,12 @@ require 'json'
 
 class SpiceLoader
 
-  def spice_list
+  def self.spices
     items = JSON.parse(open('https://api.github.com/repos/hashrocket/spices/contents/').string)
     items.select! { |item| item['type'] == 'dir' }
-    items.map { |item| item['name'] }
-  end
-
-  def get_yaml_for(spice)
-    recipe = open("https://raw.github.com/hashrocket/spices/master/#{spice}/spice.yml")
-    YAML.parse(recipe).to_ruby[spice]
+    items.map do |item|
+      Spice.new(item['name'])
+    end
   end
 
 end

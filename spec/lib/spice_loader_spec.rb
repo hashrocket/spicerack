@@ -1,28 +1,19 @@
 require 'spice_loader'
+require 'spice'
 
 describe SpiceLoader do
 
-  describe '#spice_list' do
+  describe '#spices' do
 
-    it 'returns a array of spice names in the github spices repo' do
-      folders = SpiceLoader.new.spice_list
-      folders.should include 'cask'
-      folders.should include 'minical'
-      folders.should_not include 'README.md'
+    let(:spices) { SpiceLoader.spices }
+
+    it 'returns a array of spice objects' do
+      spices.first.should be_kind_of Spice
+      spices.count.should > 4
+      spices.map(&:name).should include "cask"
+      spices.map(&:name).should include "sortr"
     end
 
-  end
-
-  describe "#get_yaml_for" do
-
-    it 'gets the yaml for that spice' do
-      result = SpiceLoader.new.get_yaml_for('cask')
-      result.should be_kind_of Array
-      result.length.should > 1
-      result.first.should be_kind_of Hash
-      result.first.keys.should include "source"
-      result.first.keys.should include "rails"
-    end
   end
 
 end
