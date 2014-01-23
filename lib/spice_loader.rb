@@ -10,7 +10,7 @@ class SpiceLoader
   end
 
   def get_yaml_for(spice)
-    recipe = open("https://raw.github.com/hashrocket/spices/master/#{spice}/recipe.yml")
+    recipe = open("https://raw.github.com/hashrocket/spices/master/#{spice}/spice.yml")
     YAML.parse(recipe).to_ruby[spice]
   end
 
