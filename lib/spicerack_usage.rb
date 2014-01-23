@@ -1,3 +1,5 @@
+require 'open-uri'
+
 module Spicerack
   class Usage
 
@@ -8,19 +10,15 @@ module Spicerack
     end
 
     def display_message
-      puts ("\n" + usage_file) if usage_file? unless ENV['GEM_TESTING']
+      puts usage_text unless ENV['GEM_TESTING']
     end
 
-    def usage_file?
-      File.exist?(usage_file_path)
-    end
-
-    def usage_file
-      File.read(usage_file_path)
+    def usage_text
+      begin; "\n" + open(usage_file_path).read; rescue; end
     end
 
     def usage_file_path
-      File.expand_path("../spices/#{spice}/USAGE", __FILE__)
+      "https://raw.github.com/hashrocket/spices/master/#{spice}/USAGE"
     end
 
   end

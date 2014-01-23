@@ -1,31 +1,22 @@
 require 'yaml'
 require 'open-uri'
 require_relative '../spice'
+require_relative '../spice_loader'
 require_relative '../spicerack_usage'
-
-def get_yaml
-  spice_file = if File.exist?('config/spicerack.yml')
-                  'config/spicerack.yml'
-                else
-                  File.expand_path('../../spicerack.yml', __FILE__)
-                end
-  YAML.load_file(spice_file)
-end
 
 namespace :spicerack do
 
   def generate_rake_tasks
-    spice_yaml = get_yaml
-    spice_yaml["spices"].keys.each do |spice|
+    spice_loader = SpiceLoader.new
+    spices = spice_loader.spice_list
 
+    spices.each do |spice|
       desc "Install #{spice}"
       task spice.to_sym do
-
-        spice_yaml["spices"][spice].each do |file|
+        spice_loader.get_yaml_for(spice).each do |file|
           Spice.new(spice, file).run
         end
         Spicerack::Usage.new(spice).display_message
-
       end
     end
   end
@@ -45,10 +36,11 @@ namespace :spicerack do
 end
 
 task :spicerack do
-  puts "\nYou can install or update a spice by calling \"rake spicerack:<spice_name>\"\n\n"
-  puts "Available spices:"
+  puts "\nYou can install or update a spice by" +
+  " calling \"rake spicerack:<spice_name>\"\n
+  Available spices:"
 
-  get_yaml["spices"].keys.sort.each do |spice|
+  SpiceLoader.new.spice_list.sort.each do |spice|
     puts "  #{spice}"
   end
 end

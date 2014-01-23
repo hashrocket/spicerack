@@ -65,7 +65,7 @@ class Spice
 
   def get_source
     if localfile?
-      File.expand_path("../spices/#{spice}/templates/#{file['source']}", __FILE__)
+      "https://raw.github.com/hashrocket/spices/master/#{spice}/templates/#{file['source']}"
     else
       file['source']
     end

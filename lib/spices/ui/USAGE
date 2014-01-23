@@ -1,7 +1,0 @@
-The Hashrocket UI Directory
-
-Adds:
-
-  - app/controllers/ui_controller.rb
-  - app/views/ui/index.html.haml
-  - a route for /ui
