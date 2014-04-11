@@ -10,10 +10,7 @@ Run `rake spicerack:<spice_name>` to install or update that spice.
 
 Examples:
 ```
-rake spicerack:cask
-rake spicerack:supernumber
 rake spicerack:minical
-rake spicerack:sortr
 rake spicerack:stagehand
 ```
 
@@ -23,11 +20,4 @@ These rake tasks pull down the newest versions of their assets straight from the
 
 ## Recipes
 
-Spicerack currently has recipes for:
-
-- Cask (Bourbon + additional Hashrocket mixins + whitespace reset)
-- the UI directory
-- [Minical](http://camerond.github.io/jquery-minical/)
-- [Sortr](https://github.com/camerond/jquery-sortr)
-- [Stagehand](http://camerond.github.io/stagehand/)
-- [superNumber](https://github.com/shaneriley/super_number/)
+Spicerack currently pulls a select set of plugins from the [Hashrocket Spices repo](https://github.com/hashrocket/spices).
