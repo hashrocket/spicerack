@@ -129,15 +129,15 @@ describe 'spicerack' do
     end
 
     it "won't overwrite a file if the user chooses not to" do
-      Ingredient.any_instance.stub(:new_or_overwrite?).and_return(false)
-      Ingredient.any_instance.should_not_receive(:write)
+      Spicerack::Ingredient.any_instance.stub(:new_or_overwrite?).and_return(false)
+      Spicerack::Ingredient.any_instance.should_not_receive(:write)
       Rake.application.invoke_task "spicerack:cask"
     end
 
     it 'overwrites a file if the user chooses to' do
-      Ingredient.any_instance.stub(:new_or_overwrite?).and_return(true)
+      Spicerack::Ingredient.any_instance.stub(:new_or_overwrite?).and_return(true)
       write_called = false
-      Ingredient.any_instance.stub(:write) { write_called = true }
+      Spicerack::Ingredient.any_instance.stub(:write) { write_called = true }
       Rake.application.invoke_task "spicerack:cask"
       write_called.should be_true
     end
@@ -151,15 +151,15 @@ describe 'spicerack' do
     end
 
     it "won't write a file if same file already exists" do
-      Ingredient.any_instance.stub(:same_file_exists?).and_return(true)
-      Ingredient.any_instance.should_not_receive(:new_or_overwrite?)
+      Spicerack::Ingredient.any_instance.stub(:same_file_exists?).and_return(true)
+      Spicerack::Ingredient.any_instance.should_not_receive(:new_or_overwrite?)
       Rake.application.invoke_task "spicerack:cask"
     end
 
     it "writes a file if the same file doesn't exist" do
-      Ingredient.any_instance.stub(:same_file_exists?).and_return(false)
+      Spicerack::Ingredient.any_instance.stub(:same_file_exists?).and_return(false)
       write_called = false
-      Ingredient.any_instance.stub(:new_or_overwrite?) { write_called = true }
+      Spicerack::Ingredient.any_instance.stub(:new_or_overwrite?) { write_called = true }
       Rake.application.invoke_task "spicerack:cask"
       write_called.should be_true
     end
