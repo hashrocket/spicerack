@@ -8,7 +8,14 @@ require_relative '../spicerack_usage'
 namespace :spicerack do
 
   def generate_rake_tasks
-    SpiceLoader.spices.each do |spice|
+    spices = begin
+      SpiceLoader.spices
+    rescue
+      $stderr.puts "Unable to load spices"
+      return
+    end
+
+    spices.each do |spice|
       desc "Install #{spice.name}"
       task spice.name.to_sym do
         spice.add_ingredients
