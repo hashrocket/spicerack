@@ -39,11 +39,11 @@ namespace :spicerack do
 end
 
 task :spicerack do
-  puts "\nYou can install or update a spice by" +
+  $stdout.puts "\nYou can install or update a spice by" +
   " calling \"rake spicerack:<spice_name>\"\n
   Available spices:"
 
   SpiceLoader.spices.map(&:name).sort.each do |spice|
-    puts "  #{spice}"
+    $stdout.puts "  #{spice}"
   end
 end

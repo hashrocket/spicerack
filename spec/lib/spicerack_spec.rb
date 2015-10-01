@@ -115,7 +115,7 @@ describe 'spicerack' do
 
     it 'prints out a list of spices' do
       puts_called = false
-      STDOUT.stub(:puts) { puts_called = true }
+      $stdout.stub(:puts) { puts_called = true }
       Rake.application.invoke_task "spicerack"
       puts_called.should be_true
     end

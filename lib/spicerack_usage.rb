@@ -10,7 +10,7 @@ module Spicerack
     end
 
     def display_message
-      puts usage_text unless ENV['GEM_TESTING']
+      $stdout.puts usage_text unless ENV['GEM_TESTING']
     end
 
     def usage_text

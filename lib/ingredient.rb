@@ -50,8 +50,8 @@ class Ingredient
   end
 
   def overwrite?
-    puts "Do you want overwrite #{destination}? [y, n]"
-    STDIN.gets == "y\n"
+    $stdout.puts "Do you want overwrite #{destination}? [y, n]"
+    $stdin.gets == "y\n"
   end
 
   def localfile?
@@ -71,11 +71,11 @@ class Ingredient
   end
 
   def display_added_message
-    puts "Added #{destination}" unless ENV["GEM_TESTING"]
+    $stdout.puts "Added #{destination}" unless ENV["GEM_TESTING"]
   end
 
   def display_exists_message
-    puts "#{destination} is up to date" unless ENV["GEM_TESTING"]
+    $stdout.puts "#{destination} is up to date" unless ENV["GEM_TESTING"]
   end
 
 end
